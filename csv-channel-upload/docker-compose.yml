@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  localstack:
+    image: localstack/localstack
+    environment:
+      - SERVICES=s3
+      - DEBUG=0
+      - DATA_DIR-/tmp/localstack/DATA_DIR
+      - AWS_REGION=ap-northeast-1
+      - BUCKET_NAME=local-bucket
+    volumes:
+      - .localstack/init.sh:/etc/localstack/init/ready.d/init.sh
+    ports:
+      - "4566:4566"
